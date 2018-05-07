@@ -1,0 +1,3 @@
+./kmp
+./shift
+./test
