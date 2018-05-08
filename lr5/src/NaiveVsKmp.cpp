@@ -2,47 +2,6 @@
 #include "../hdr/kmpFunc.h"
 
 using namespace std;
-/*
-void print(const vector<int>& index){ //print result
-    for(const auto& it: index){
-        cout<<it;
-        if(it!=index[index.size()-1])
-            cout<<",";
-    }
-    cout<<"\n";
-}
-
-int main(){
-    string text, temp;
-    cout<<"Template:\n";
-    cin>>temp;
-    cout<<"Text:\n";
-    cin>>text;
-    if(text.size()>=temp.size()){
-        int count_opers=0;
-        vector<int> pi=prefix(temp);
-        vector<int> index1=kmp(text,temp,pi,count_opers);
-        cout<<"---------\nKMP:\n";
-        if(index1.size()){
-            print(index1);
-        }
-        else
-            cout<<"-1\n";
-        cout<<"Число операций: "<<count_opers+temp.size()<<"\n---------\nNaive:\n";
-        count_opers=0;
-        vector<int> index2=naive(text,temp,count_opers);
-        if(index2.size()){
-                print(index2);
-        }
-        else
-            cout<<"-1\n";
-        cout<<"Число операций: "<<count_opers<<"\n---------\n";
-    }
-    else
-        cout<<"Шаблон должен быть меньше текста\n";
-    return 0;
-}
-*/
 
 string RandString(int size1, int size2){
     string str="";
