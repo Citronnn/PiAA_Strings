@@ -5,7 +5,7 @@ project(lab5KMP)
 add_library(kmpFunc ./src/kmpFunc.cpp)
 
 target_include_directories(kmpFunc PUBLIC ./hdr)
-set(CMAKE_CXX_FLAGS "-std=c++11")
+set(CMAKE_CXX_FLAGS "-Wall -std=c++11")
 
 add_executable (kmp ./src/kmp.cpp)
 add_executable (shift ./src/shift.cpp)

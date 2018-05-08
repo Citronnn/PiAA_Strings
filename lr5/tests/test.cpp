@@ -25,9 +25,20 @@ void TestKmp(){
     assert(kmp("aabaabbaaabaabaabaabaabbaabb","aabbaab",vector<int>({0,1,0,0,1,2,3}),counter)==vector<int>({20}));
 }
 
+void TestShift(){
+    assert(is_shift("defabc","abcdef")==3);
+    assert(is_shift("a","aaa")==-1);
+    assert(is_shift("aaa","a")==-1);
+    assert(is_shift("aaa","aaa")==0);
+    assert(is_shift("aaab","aaaa")==-1);
+    assert(is_shift("qwertyuiop","uiopqwerty")==6);
+    assert(is_shift(string(4999999, 'a')+'b','b'+string(4999999, 'a'))==4999999);
+}
+
 int main(){
     TestPref();
     TestKmp();
+    TestShift();
     cout<<"Correct!\n";
     return 0;
 }
