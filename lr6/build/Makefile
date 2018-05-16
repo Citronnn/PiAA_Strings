@@ -39,10 +39,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ubuntu/workspace/PIAA/lr6
+CMAKE_SOURCE_DIR = /home/ubuntu/workspace/PiAA_Strings/lr6
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ubuntu/workspace/PIAA/lr6/build
+CMAKE_BINARY_DIR = /home/ubuntu/workspace/PiAA_Strings/lr6/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -69,9 +69,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/workspace/PIAA/lr6/build/CMakeFiles /home/ubuntu/workspace/PIAA/lr6/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/workspace/PiAA_Strings/lr6/build/CMakeFiles /home/ubuntu/workspace/PiAA_Strings/lr6/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/workspace/PIAA/lr6/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/workspace/PiAA_Strings/lr6/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -136,6 +136,19 @@ AKfunc: cmake_check_build_system
 AKfunc/fast:
 	$(MAKE) -f CMakeFiles/AKfunc.dir/build.make CMakeFiles/AKfunc.dir/build
 .PHONY : AKfunc/fast
+
+#=============================================================================
+# Target rules for targets named clean
+
+# Build rule for target.
+clean: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 clean
+.PHONY : clean
+
+# fast build rule for target.
+clean/fast:
+	$(MAKE) -f CMakeFiles/clean.dir/build.make CMakeFiles/clean.dir/build
+.PHONY : clean/fast
 
 #=============================================================================
 # Target rules for targets named helpfunc
@@ -235,6 +248,30 @@ src/AKwithDJoker.cpp.s:
 	$(MAKE) -f CMakeFiles/AKDjoker.dir/build.make CMakeFiles/AKDjoker.dir/src/AKwithDJoker.cpp.s
 .PHONY : src/AKwithDJoker.cpp.s
 
+src/clean.o: src/clean.cpp.o
+.PHONY : src/clean.o
+
+# target to build an object file
+src/clean.cpp.o:
+	$(MAKE) -f CMakeFiles/clean.dir/build.make CMakeFiles/clean.dir/src/clean.cpp.o
+.PHONY : src/clean.cpp.o
+
+src/clean.i: src/clean.cpp.i
+.PHONY : src/clean.i
+
+# target to preprocess a source file
+src/clean.cpp.i:
+	$(MAKE) -f CMakeFiles/clean.dir/build.make CMakeFiles/clean.dir/src/clean.cpp.i
+.PHONY : src/clean.cpp.i
+
+src/clean.s: src/clean.cpp.s
+.PHONY : src/clean.s
+
+# target to generate assembly for a file
+src/clean.cpp.s:
+	$(MAKE) -f CMakeFiles/clean.dir/build.make CMakeFiles/clean.dir/src/clean.cpp.s
+.PHONY : src/clean.cpp.s
+
 src/helpfunc.o: src/helpfunc.cpp.o
 .PHONY : src/helpfunc.o
 
@@ -292,6 +329,7 @@ help:
 	@echo "... AKDjoker"
 	@echo "... AKStandart"
 	@echo "... AKfunc"
+	@echo "... clean"
 	@echo "... edit_cache"
 	@echo "... helpfunc"
 	@echo "... rebuild_cache"
@@ -305,6 +343,9 @@ help:
 	@echo "... src/AKwithDJoker.o"
 	@echo "... src/AKwithDJoker.i"
 	@echo "... src/AKwithDJoker.s"
+	@echo "... src/clean.o"
+	@echo "... src/clean.i"
+	@echo "... src/clean.s"
 	@echo "... src/helpfunc.o"
 	@echo "... src/helpfunc.i"
 	@echo "... src/helpfunc.s"

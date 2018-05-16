@@ -11,6 +11,7 @@ set(CMAKE_CXX_FLAGS "-std=c++11")
 
 add_executable (AKStandart src/AKstandart.cpp)
 add_executable (AKDjoker src/AKwithDJoker.cpp)
+add_executable (clean src/clean.cpp)
 
 target_link_libraries(AKStandart AKfunc)
 target_link_libraries(AKDjoker AKfunc)
