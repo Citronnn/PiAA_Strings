@@ -16,7 +16,7 @@ void printSt(map<int, vector<int>>& answ){
 }
 
 bool checker(const string& text){
-    for(int i=0; i<text.size();i++){
+    for(size_t i=0; i<text.size();i++){
         if(text[i]<'A' || text[i]>'Z'){
             return false;
         }

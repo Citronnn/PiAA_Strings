@@ -24,11 +24,11 @@ void addstrBohr(const string& s, vector<string>& pattern){ //Процедура 
     int num = 0;
     for (size_t i = 0; i < s.length(); ++i){
         char ch = s[i] - 'A';
-        if (bohr[num].nextV[ch] == -1) {
+        if (bohr[num].nextV[(int)ch] == -1) {
             bohr.push_back(makeBohr(num, ch));
-            bohr[num].nextV[ch] = bohr.size() - 1;
+            bohr[num].nextV[(int)ch] = bohr.size() - 1;
         }
-        num=bohr[num].nextV[ch];
+        num=bohr[num].nextV[(int)ch];
     }
     bohr[num].flag = true;
     pattern.push_back(s);
@@ -36,24 +36,27 @@ void addstrBohr(const string& s, vector<string>& pattern){ //Процедура 
 }
 
 int getSuff_link(int v){
-    if (bohr[v].suff_link == -1) //если еще не считали
-    if (v == 0 || bohr[v].parent == 0) //если v - корень или предок v - корень
-        bohr[v].suff_link = 0;
-    else
-        bohr[v].suff_link=getAuto_move(getSuff_link(bohr[v].parent), bohr[v].symb);
+    if (bohr[v].suff_link == -1){ //если еще не считали
+        if (v == 0 || bohr[v].parent == 0) //если v - корень или предок v - корень
+            bohr[v].suff_link = 0;
+        else
+            bohr[v].suff_link=getAuto_move(getSuff_link(bohr[v].parent), bohr[v].symb);
+    }
     return bohr[v].suff_link;
 }
 
 int getAuto_move(int v, char ch){
-    if (bohr[v].auto_move[ch] == -1)
-        if (bohr[v].nextV[ch] != -1)
-            bohr[v].auto_move[ch] = bohr[v].nextV[ch];
-        else
+    if (bohr[v].auto_move[(int)ch] == -1){
+        if (bohr[v].nextV[(int)ch] != -1)
+            bohr[v].auto_move[(int)ch] = bohr[v].nextV[(int)ch];
+        else{
             if (v == 0)
-                bohr[v].auto_move[ch] = 0;
-    else
-        bohr[v].auto_move[ch]=getAuto_move(getSuff_link(v), ch);
-    return bohr[v].auto_move[ch];
+                bohr[v].auto_move[(int)ch] = 0;
+            else
+                bohr[v].auto_move[(int)ch]=getAuto_move(getSuff_link(v), ch);
+        }
+    }
+    return bohr[v].auto_move[(int)ch];
 }
 
 int getSuff_flink(int v){
@@ -80,7 +83,7 @@ void checkForDjoker(int v,int i,vector<int>& count, const vector<int>& lenght){
     for(int u = v; u != 0; u = getSuff_flink(u)){
         if (bohr[u].flag){
             for(const auto& it: bohr[u].pat_num){
-                if(i-lenght[it]<count.size()){
+                if((size_t)(i-lenght[it])<count.size()){
                     count[i-lenght[it]]++;
                 }
             }
