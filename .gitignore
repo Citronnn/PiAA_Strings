@@ -2,8 +2,8 @@ CMakeCache.txt
 CMakeFiles
 cmake_install.cmake
 
-build/AKDjoker
+AKDjoker
 build/libAKfunc.a
 build/libhelpfunc.a
-build/tests
-build/AKStandart
+tests
+AKStandart
