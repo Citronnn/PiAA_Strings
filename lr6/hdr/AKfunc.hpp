@@ -8,15 +8,14 @@
 #include <string>
 #include <algorithm>
 #include <cstring>
-#define alph 52
 
 using namespace std;
 
 struct Bohr{
-    int nextV[alph]; //nextV[i] — номер вершины, в которую мы придем по символу с номером i в алфавите
+    map<char,int> nextV; //nextV[i] — номер вершины, в которую мы придем по символу с номером i в алфавите
     vector<int> pat_num; //pat_num — номер строки-образца, обозначаемого этой вершиной
     int suff_link; //suff_link - суффиксная ссылка
-    int auto_move[alph]; //auto_move - запоминание перехода автомата
+    map<char,int> auto_move; //auto_move - запоминание перехода автомата
     int parent; //parent - вершина-отец в дереве
     int suff_flink; //suff_flink - "хорошая" суф. ссылка
     bool flag; //flag — бит, указывающий на то, является ли наша вершина исходной строкой

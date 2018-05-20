@@ -6,18 +6,14 @@ int main(){
     string text, temp;
     int n;
     cin>>text>>n;
-    if(checker(text)){
-        vector<string> pattern;
-        map<int,vector<int>> answ;
-        for(int i=0; i<n; i++){
-            cin>>temp;
-            addstrBohr(temp, pattern);
-        }
-        findAllPosForStandart(text, pattern,answ);
-
-        printSt(answ);
+    vector<string> pattern;
+    map<int,vector<int>> answ;
+    for(int i=0; i<n; i++){
+        cin>>temp;
+        addstrBohr(temp, pattern);
     }
-    else
-        cout<<"Вводятся латинские символы верхнего регистра!\n";
+    findAllPosForStandart(text, pattern,answ);
+
+    printSt(answ);
     return 0;
 }

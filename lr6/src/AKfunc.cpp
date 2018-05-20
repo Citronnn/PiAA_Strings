@@ -4,9 +4,7 @@ vector<Bohr> bohr;
 
 Bohr makeBohr(int p, char c){ //Функции создания новой вершины и инициализации бора
     Bohr v;
-    for(int i=0;i<alph;i++){
-       v.nextV[i]=v.auto_move[i]=-1;
-    }
+    v.nextV[c]=v.auto_move[c]=-1;
     v.flag = false;
     v.suff_link = -1; //изначально - суф. ссылки нет
     v.parent = p; //передаем номер отца и символ на ребре в бор
@@ -17,18 +15,18 @@ Bohr makeBohr(int p, char c){ //Функции создания новой ве�
 
 void initBohr(){
     bohr.clear();
-    bohr.push_back(makeBohr(0,255));
+    bohr.push_back(makeBohr(0,'$'));
 }
 
 void addstrBohr(const string& s, vector<string>& pattern){ //Процедура добавление строки-образца в бор
     int num = 0;
     for (size_t i = 0; i < s.length(); ++i){
-        char ch = s[i] - 'A';
-        if (bohr[num].nextV[(int)ch] == -1) {
+        char ch = s[i];
+        if(bohr[num].nextV.find(ch)==bohr[num].nextV.end() || bohr[num].nextV[ch]==-1){
             bohr.push_back(makeBohr(num, ch));
-            bohr[num].nextV[(int)ch] = bohr.size() - 1;
+            bohr[num].nextV[ch] = bohr.size() - 1;
         }
-        num=bohr[num].nextV[(int)ch];
+        num=bohr[num].nextV[ch];
     }
     bohr[num].flag = true;
     pattern.push_back(s);
@@ -46,17 +44,17 @@ int getSuff_link(int v){
 }
 
 int getAuto_move(int v, char ch){
-    if (bohr[v].auto_move[(int)ch] == -1){
-        if (bohr[v].nextV[(int)ch] != -1)
-            bohr[v].auto_move[(int)ch] = bohr[v].nextV[(int)ch];
+    if (bohr[v].auto_move.find(ch)==bohr[v].auto_move.end() || bohr[v].auto_move[ch]==-1){
+        if (bohr[v].nextV.find(ch)!=bohr[v].nextV.end() && bohr[v].nextV[ch]!=-1)
+            bohr[v].auto_move[ch] = bohr[v].nextV[ch];
         else{
             if (v == 0)
-                bohr[v].auto_move[(int)ch] = 0;
+                bohr[v].auto_move[ch] = 0;
             else
-                bohr[v].auto_move[(int)ch]=getAuto_move(getSuff_link(v), ch);
+                bohr[v].auto_move[ch]=getAuto_move(getSuff_link(v), ch);
         }
     }
-    return bohr[v].auto_move[(int)ch];
+    return bohr[v].auto_move[ch];
 }
 
 int getSuff_flink(int v){
@@ -94,15 +92,16 @@ void checkForDjoker(int v,int i,vector<int>& count, const vector<int>& lenght){
 void findAllPosForStandart(const string& s,const vector<string>& pattern, map<int,vector<int>>& answ){
     int u = 0;
     for(size_t i = 0; i < s.size(); i++) {
-        u = getAuto_move(u, s[i] - 'A');
+        u = getAuto_move(u, s[i]);
         checkForStandart(u, i+1, pattern, answ);
+
     }
 }
 
 void findAllPosForDjoker(const string& s,vector<int>& count, const vector<int>& lenght){
     int u = 0;
     for(size_t i = 0; i < s.size(); i++) {
-        u = getAuto_move(u, s[i] - 'A');
+        u = getAuto_move(u, s[i]);
         checkForDjoker(u, i+1, count,lenght);
     }
 }
