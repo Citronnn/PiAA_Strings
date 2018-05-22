@@ -59,6 +59,8 @@ protected:
 INSTANTIATE_TEST_CASE_P(StandartInstantiate, StandartFixture,
 Values(
     StandartTest{"CCCA", {"CC"}, {{1,{1}},{2,{1}}}},
+    StandartTest{"ФФ", {"Ф"}, {{1,{1}},{3,{1}}}},
+    StandartTest{"CФCФS", {"Ф"}, {{2,{1}},{5,{1}}}},
     StandartTest{"CCCA", {"CC", "C","CCC"}, {{1,{1,2,3}},{2,{1,2}},{3,{2}}}},
     StandartTest{"AHFSHRSJER", {"SH", "FSH", "M", "R","HFSHR"}, {{2,{5}},{3,{2}},{4,{1}},{6,{4}},{10,{4}}}},
     StandartTest{"KORASIK", {"NE", "NET"}, {}}
